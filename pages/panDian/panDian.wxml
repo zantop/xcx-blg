@@ -1,0 +1,81 @@
+<view class="site-wrap">
+    <view class="site spaceBetween">
+        <view class="locateName">便利柜</view>
+        <view class="selectBox spaceBetween">
+            <picker class="pickerBox"
+                    bindchange="bindPickerChange"
+                    value="{{index}}"
+                    range="{{siteList}}"
+                    range-key="warehouseName">
+                <view class="pickerView">
+                    <view class="selectedName">{{siteList[index].warehouseName}}</view>
+                </view>
+            </picker>
+        </view>
+        <view class="out" bindtap="bindLogOut">退出登录</view>
+    </view>
+</view>
+<block wx:if="{{index>0}}">
+    <view class="list-ft create-btn">
+        <button class="endBgColor panDianBtn" bindtap="inventory">生成盘点单</button>
+    </view>
+</block>
+
+<block wx:if="{{panDianList}}">
+    <view wx:for="{{panDianList}}" wx:key="" class="list">
+        <view class="list-hd">
+            <text class="list-item">盘点单号：</text>
+            <text class="list-info" selectable="true">{{item.orderCode}}</text>
+        </view>
+        <view class="list-bd">
+            <view class="list-wrap">
+                <text class="list-item">创建时间：</text>
+                <text class="list-info">{{item.gmtCreate}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">公司名称：</text>
+                <text class="list-info">{{item.company}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">公司地址：</text>
+                <text class="list-info">{{item.address}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">联系方式：</text>
+                <text class="list-info">{{item.tel}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">补货时间：</text>
+                <text class="list-info">{{item.bussHours}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">盘点状态：</text>
+                <text class="list-info {{item.orderStatusCode=='00'?'beginColor':''||item.orderStatusCode=='30'?'processColor':''||item.orderStatusCode=='50'?'endColor':''||item.orderStatusCode=='70'&&'endColor'||item.orderStatusCode=='80'&&'endColor'}}">
+                    <text>{{item.orderStatus}}</text>
+                    <block wx:if="{{item.orderStatusCode =='50'}}">
+                        <text style="margin-left:30rpx;display:inline-block;">{{item.stockCountEndTime}}</text>
+                    </block>
+                </text>
+            </view>
+        </view>
+        <view class="list-ft">
+            <button hover-class="none"
+                    class="{{item.orderStatusCode=='00'&&'beginBgColor'||item.orderStatusCode=='30'&&'processBgColor'||item.orderStatusCode=='50'&&'endBgColor'||item.orderStatusCode=='70'&&'endBgColor'||item.orderStatusCode=='80'&&'endBgColor'}}"
+                    bindtap="start"
+                    data-status="{{item.orderStatusCode}}"
+                    data-id="{{item.id}}"
+                    data-ordercode="{{item.orderCode}}"
+                    data-address="{{item.address}}">
+                {{item.orderStatusCode=='00'&&'开始盘点'||item.orderStatusCode=='30'&&'继续盘点'||item.orderStatusCode=='50'&&'查看详情'||item.orderStatusCode=='70'&&'查看详情'||item.orderStatusCode=='80'&&'查看详情'}}
+            </button>
+        </view>
+    </view>
+    <view wx:if="{{loadingEnd && panDianList.length>0}}" class="end">已经到底啦</view>
+</block>
+<block wx:if="{{!panDianList && index>0||noTips}}">
+    <view class="no-tips">
+        <image src="https://mobile.urfresh.cn/images/panDianNull.png"></image>
+        <view class="no-tips-msg">您当前没有要处理的盘点单</view>
+    </view>
+</block>
+

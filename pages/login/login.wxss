@@ -1,0 +1,66 @@
+page{
+    background:url('https://mobile.urfresh.cn/images/loginBack.jpg')no-repeat center center;
+    background-size:cover;
+}
+.loginPage{
+  margin:290rpx auto;
+}
+.login{
+  background-color: #fff;
+  color: #8ebf30;
+  margin-top:76rpx;
+}
+.inputBox{
+  width:430rpx;
+  margin:0 auto;
+  margin-bottom:40rpx;
+  position:relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.user,.password{
+  border-bottom:1px solid #fff;
+  flex: 1;
+}
+.inputImg{
+  width:80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.inputImg image{
+  position: relative;
+    width:30rpx;
+    height:30rpx;
+  margin-top: 20rpx;
+}
+input{
+  color:#fff;
+  flex: 1;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.clear{
+  width:30rpx;
+  height:30rpx;
+  position:absolute;
+  bottom:0;
+  right:6rpx;
+  z-index:10;
+  padding:20rpx;
+}
+button {
+  width:430rpx;
+  height:86rpx;
+  line-height:86rpx;
+  font-size:34rpx;
+}
+
+.tel{
+  font-size:24rpx;
+  color:#fff;
+  text-align:center;
+  margin-top:20rpx;
+}

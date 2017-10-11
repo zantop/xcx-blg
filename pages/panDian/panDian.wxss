@@ -1,0 +1,14 @@
+@import "../../utils/util.wxss";
+.panDianBtn{
+  margin-top:20rpx;
+}
+.end{
+  text-align: center;
+  color:#aaa;
+}
+.list-ft{
+  padding-bottom: 20rpx;
+}
+.create-btn{
+  padding-top: 86rpx;
+}

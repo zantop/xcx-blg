@@ -1,0 +1,32 @@
+<view class="loginPage">
+    <view class="inputBox spaceBetween">
+        <view class="inputImg">
+            <image src="../../images/username.png" alt=""></image>
+        </view>
+        <view class="user ">
+            <input
+                   value="{{userN}}"
+                   bindinput="userNameInput"
+                   placeholder="账号"
+                   placeholder-style="color:#fff;"/>
+        </view>
+    </view>
+    <view class="inputBox spaceBetween">
+        <view class="inputImg">
+            <image src="../../images/password.png" alt=""></image>
+        </view>
+        <view class="password ">
+            <input password
+                   value="{{passW}}"
+                   bindinput="passWdInput"
+                   placeholder="密码"
+                   placeholder-style="color:#fff;"/>
+        </view>
+
+    </view>
+    <view class="list-ft">
+        <button class="login" bindtap="loginBtnClick">登录</button>
+    </view>
+    <view class="tel" bindtap="call">如有问题，请联系{{phoneNumber}}</view>
+
+</view>

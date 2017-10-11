@@ -1,0 +1,63 @@
+<view class="site-wrap">
+    <view class="site spaceBetween">
+        <view class="locateName">便利柜</view>
+        <view class="selectBox spaceBetween">
+            <picker class="pickerBox"
+                    bindchange="bindPickerChange"
+                    value="{{index}}"
+                    range="{{siteList}}"
+                    range-key="warehouseName">
+                <view class="pickerView">
+                    <view class="selectedName">{{siteList[index].warehouseName}}</view>
+                </view>
+            </picker>
+        </view>
+        <view class="out" bindtap="bindLogOut">退出登录</view>
+    </view>
+</view>
+<view class="content">
+    <view class="list" wx:for="{{asnInfo}}" wx:key="">
+        <view class="list-hd">
+            <text class="list-item">上架单号：</text>
+            <text  selectable="true" class="list-info">{{item.asnCode}}</text>
+        </view>
+        <view class="list-bd">
+            <view class="list-wrap">
+                <text class="list-item">创建时间：</text>
+                <text class="list-info">{{item.gmtCreate}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">公司名称：</text>
+                <text class="list-info">{{item.companyName}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">公司地址：</text>
+                <text class="list-info">{{item.address}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">联系信息：</text>
+                <text class="list-info">{{item.contactName}}  {{item.contactPhone}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">补货时间：</text>
+                <text class="list-info">{{item.bussHours}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">上架状态：</text>
+                <text class="list-info {{item.asnStatus=='00'?'beginColor':''||item.asnStatus=='30'?'processColor':''||item.asnStatus=='99'?'endColor':''}}">{{item.asnStatusDesc}}</text>
+            </view>
+        </view>
+        <view class="list-ft">
+            <navigator hover-class="none" class="{{item.asnStatus=='00'?'beginBgColor':''||item.asnStatus=='30'?'processBgColor':''||item.asnStatus=='99'?'endBgColor':''}}"
+                       bindtap="beginPick"
+                       url="./../shangJiaInfo/shangJiaInfo?warehouseId={{warehouseId}}&asnId={{item.id}}&asnCode={{item.asnCode}}&address={{item.address}}&asnStatus={{item.asnStatus}}">
+                {{item.asnStatus=='00'?'去上架':''||item.asnStatus=='30'?'继续上架':''||item.asnStatus=='99'?'查看详情':''}}
+            </navigator>
+        </view>
+    </view>
+    <view class="loadingMore" wx:if="{{loadingMore}}">{{loadingMoreMsg}}</view>
+    <view class="no-tips" wx:if="{{noTips}}">
+        <image src="https://mobile.urfresh.cn/images/noshangjia.png"></image>
+        <view class="no-tips-msg">您当前没有要处理的上架单</view>
+    </view>
+</view>

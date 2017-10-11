@@ -1,0 +1,69 @@
+<view class="info-hd list-hd">
+    <text class="list-item">上架单号：</text>
+    <text selectable="true" class="list-info">{{asnCode}}</text>
+    <text class="list-address mainColor">{{address}}</text>
+</view>
+
+<view class="content">
+    <view class="tab">
+        <view class="tab-item {{currentTab==index?'active':''}}" wx:for="{{zoneAll}}" wx:key="" data-index="{{index}}"
+              bindtap="tabClick">{{item}}
+        </view>
+    </view>
+    <swiper duration="300" current="{{currentTab}}" style="height:{{winHeight-80}}px" bindchange="bindChange">
+        <swiper-item wx:for="{{zoneProAll}}" wx:key="key">
+            <view class="bd-list" wx:for="{{item}}" wx:key="key">
+                <view class="list-wrap">
+                    <text class="list-item">商品名称：</text>
+                    <text class="list-info">{{item.skuName}}</text>
+                    <text class="list-layer mainColor">{{item.locDesc}}</text>
+                </view>
+                <view class="list-wrap">
+                    <text class="list-item">商品条码：</text>
+                    <text class="list-info">{{item.productCode}}</text>
+                </view>
+                <view class="list-wrap">
+                    <text class="list-item">应上数量：</text>
+                    <text class="list-info">{{item.planPutAwayQty}}</text>
+                </view>
+                <view class="list-wrap">
+                    <text class="list-item">实际数量：</text>
+                    <text wx:if="{{asnStatus=='99'}}">{{item.actPutAwayQty}}</text>
+                    <input wx:if="{{asnStatus=='00'||asnStatus=='30'}}" class="beginColor" type="number"
+                           data-id="{{item.skuId}}" bindinput="actualFill" value="{{item.pickNum}}"
+                           data-plannum="{{item.planPutAwayQty}}"/>
+
+                    <view class="diff" wx:if="{{item.isDiff}}">
+                        <text>差异数量:</text>
+                        <text wx:if="{{asnStatus=='99'}}" class="diffColor">{{item.planPutAwayQty-item.actPutAwayQty}}
+                        </text>
+                        <text wx:if="{{asnStatus=='00'||asnStatus=='30'}}" class="diffColor">{{item.diffNum}}</text>
+                    </view>
+
+                </view>
+                <view class="list-btn clearfix">
+                    <view class="asn-diff" wx:if="{{asnStatus=='99'}}" class="mainColor">上架完成</view>
+                    <view class="asn-sure processBgColor"
+                          wx:if="{{asnStatus=='00'||asnStatus=='30'}}"
+                          bindtap="putAwayOk"
+                          data-id="{{item.id}}"
+                          data-skuId="{{item.skuId}}"
+                          data-locId="{{item.locId}}"
+                          data-locDesc="{{item.locDesc}}"
+                          data-plannum="{{item.planPutAwayQty}}"
+                          data-warehouseId="{{warehouseId}}"
+                          data-picknum="{{item.pickNum}}"
+                    >确认上架
+                    </view>
+                </view>
+
+            </view>
+        </swiper-item>
+        <view class="no-tips" wx:if="{{noTips}}">
+            <image src="https://mobile.urfresh.cn/images/noshangjia.png"></image>
+            <view class="no-tips-msg">该上架单已全部完成</view>
+        </view>
+    </swiper>
+</view>
+
+

@@ -1,0 +1,46 @@
+{
+	"pages":[
+
+		"pages/login/login",
+		"pages/jianHuo/jianHuo",
+		"pages/jianHuoInfo/jianHuoInfo",
+		"pages/panDian/panDian",
+		"pages/panDianInfo/panDianInfo",
+		"pages/shangJia/shangJia",
+		"pages/shangJiaInfo/shangJiaInfo"
+	],
+	"window":{
+		"backgroundTextStyle":"light",
+		"navigationBarBackgroundColor": "#8ebf30",
+		"navigationBarTitleText": "掌柜利剑",
+		"navigationBarTextStyle":"white",
+		"enablePullDownRefresh": true
+	},
+	"tabBar": {
+		"color":"#9f9f9f",
+		"selectedColor":"#8cc030",
+		"backgroundColor":"#eee",
+		"borderStyle":"white",
+		"position":"bottom",
+		"list": [{
+			"iconPath":"images/jianHuo1.png",
+			"selectedIconPath":"images/jianHuo.png",
+			"pagePath": "pages/jianHuo/jianHuo",
+			"text": "拣货单"
+		}, {
+			"iconPath":"images/panDian1.png",
+			"selectedIconPath":"images/panDian.png",
+			"pagePath": "pages/panDian/panDian",
+			"text": "盘点单"
+		},{
+			"iconPath":"images/shangJia1.png",
+			"selectedIconPath":"images/shangJia.png",
+			"pagePath": "pages/shangJia/shangJia",
+			"text": "上架单"
+		}
+		]
+	},
+	"networkTimeout": {
+		"request": 15000
+	}
+}

@@ -1,0 +1,61 @@
+@import "../../utils/util.wxss";
+
+.info-hd{
+  padding: 0 20rpx;
+  border-bottom: 0;
+}
+
+input{
+  border-radius: 8rpx;
+  width: 150rpx;
+  border: 1px solid #8ebf30;
+  padding-left: 8rpx;
+  font-size: 30rpx;
+}
+.bd-list{
+  margin:0 20rpx 20rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+
+.diff{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 1;
+  text-align: center;
+}
+.diff text{
+  flex: 1;
+}
+.diff text:first-child{
+  text-align: right;
+}
+.diff text:last-child{
+  text-align: left;
+}
+.list-btn view:first-child{
+    float: right;
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin-top: 10rpx;
+    margin-bottom: 5rpx;
+    font-size: 26rpx;
+    text-align: center;
+    border-radius: 10rpx;
+  }
+.list-btn view:last-child{
+  float: right;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 10rpx;
+  margin-bottom: 5rpx;
+  font-size: 26rpx;
+}
+
+.info-bd{
+  padding-bottom: 200rpx;
+}

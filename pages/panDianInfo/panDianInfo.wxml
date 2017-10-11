@@ -1,0 +1,102 @@
+<view class="pandian-Info">
+    <view class="list-hd spaceBetween">
+        <text class="list-item">盘点单号：</text>
+        <text class="list-info" selectable="true">{{option.orderCode}}</text>
+        <text class="list-address mainColor">{{option.address}}</text>
+    </view>
+   <view  class="list-tab spaceBetween">
+       <block wx:for="{{kuArr}}"
+              wx:key="{{partitionId}}">
+           <view class="tab-item {{quCurrentIndex==index && 'tabActive'}}"
+                 bindtap="quChoice"
+                 data-index="{{item.quIndex}}"
+                 data-id="{{partitionId}}">
+               {{item.partitionName}}
+           </view>
+       </block>
+   </view>
+    <view class="list-content">
+        <scroll-view scroll-y="true" class="left-side">
+            <block wx:for="{{cengArr[quCurrentIndex]}}"
+                   wx:key="locId">
+                <view class="cell center {{cengCurrentIndex==index && 'leftActive'}}"
+                      bindtap="cengChoice"
+                      data-index="{{item.cengIndex}}"
+                      data-id="{{locId}}">
+                    <view>
+                        <text>{{item.locDesc}}</text>
+                    </view>
+                </view>
+            </block>
+        </scroll-view>
+
+            <scroll-view  class="right-side" scroll-y="true">
+                <view class="bd-list"
+                      wx:for="{{itemList}}"
+                      wx:key="{{skuId}}">
+                    <view class="list-wrap">
+                        <text class="list-item">商品名称：</text>
+                        <text class="list-info">{{item.skuName}}</text>
+                    </view>
+                    <view class="list-wrap">
+                        <text class="list-item">商品条码：</text>
+                        <text class="list-info">{{item.productCode}}</text>
+                    </view>
+                    <view wx:if="{{!item.actStockCount}}" class="list-wrap">
+                        <text class="list-item">实际数量：</text>
+                        <input class="list-actualNum"
+                               type="number"
+                               bindinput="calculDiff"
+                               value="{{item.actualNum}}"
+                               data-skucount="{{item.planStockCount}}"
+                               data-id="{{item.skuId}}"/>
+                    </view>
+                    <view wx:if="{{item.actStockCount}}" class="list-wrap">
+                        <text class="list-item">应有数量：</text>
+                        <text>{{item.planStockCount}}</text>
+                    </view>
+                    <view wx:if="{{item.actStockCount}}" class="list-wrap">
+                        <text class="list-item">实际数量：</text>
+                        <text style="width:160rpx;display:inline-block">{{item.actStockCount}}</text>
+                        <text class="list-item">差异数量：</text>
+                        <text>{{item.diffStockCount}}</text>
+                    </view>
+                    <view class="diffCause">
+                        <block wx:if="{{item.isDiff}}">
+                            <view class="list-wrap">
+                                <text class="list-item">差异数量：</text>
+                                <view class="diff beginColor">{{item.diffNum}}</view>
+                                <view class="diff-reason spaceBetween">
+                                    <view class="selectBox spaceBetween diffBox">
+                                        <picker class="pickerBox"
+                                                bindchange="bindPickerChange"
+                                                value="{{item.causeIndex}}"
+                                                range="{{item.causeList}}"
+                                                range-key="value"
+                                                data-id="{{item.skuId}}">
+                                            <view class="pickerView">
+                                                <view class="selectedName">{{item.causeList[item.causeIndex].value}}</view>
+                                            </view>
+                                        </picker>
+                                    </view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <view wx:if="{{!item.actStockCount}}" class="list-btn clearfix">
+                        <view class="processBgColor"
+                                data-id="{{item.skuId}}"
+                                data-skuid="{{item.skuId}}"
+                                data-detailid="{{item.detailId}}"
+                                data-skucount="{{item.planStockCount}}"
+                                data-actualnum="{{item.actualNum}}"
+                                data-causecode="{{item.causeCode}}"
+                                data-causevalue="{{item.causeValue}}"
+                                bindtap="sourePD">
+                            确认盘点</view>
+                    </view>
+                </view>
+            </scroll-view>
+    </view>
+</view>
+

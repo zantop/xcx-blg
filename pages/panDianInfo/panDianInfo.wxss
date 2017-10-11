@@ -1,0 +1,142 @@
+@import "../../utils/util.wxss";
+page{
+  height:100%;
+}
+
+.pandian-Info{
+  height:100%;
+  background-color:#fff;
+}
+.diffBox{
+  width: 80%;
+  background:url("https://mobile.urfresh.cn/images/differenceBack.png") no-repeat center center;
+  background-size:cover;
+}
+.pickerView {
+  width:78%;
+  padding-right:22%;
+}
+
+.list-hd{
+  height:7%;
+  padding: 0 20rpx;
+  border-bottom: 0;
+  box-sizing:border-box;
+}
+.list-tab{
+  height:5%;
+  border-bottom: 2rpx solid #eee;
+  font-size:30rpx;
+  box-sizing:border-box;
+}
+.tab-item{
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.tabActive{
+  color: #8ebf30;
+}
+.tabActive::before{
+  content: '';
+  position: absolute;
+  bottom: -1rpx;
+  left: 50%;
+  margin-left: -15%;
+  width:30%;
+  height: 4rpx;
+  background-color: #8ebf30;
+}
+
+.list-content{
+  font-size:28rpx;
+  display: flex;
+  height:88%;
+  box-sizing:border-box;
+}
+.left-side{
+  width: 150rpx;
+  background-color:#f1f1f1;
+  height:100%;
+  overflow-y:scroll;
+}
+.status{
+  color:#8ebf30;
+  font-size:22rpx;
+}
+.left-side .cell {
+  height: 110rpx;
+  border-bottom: 1rpx solid #e1e1e1;
+  text-align: center;
+}
+.cell text{
+  display:block;
+}
+.leftActive{
+  position: relative;
+  background-color: #fff;
+}
+.leftActive::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 4rpx;
+  height: 110rpx;
+  background-color: #8ebf30;
+}
+.right-side{
+  flex: 1;
+  padding-left: 40rpx;
+  background-color: #fff;
+  height:100%;
+  overflow-y:scroll;
+}
+.list-actualNum{
+  width: 120rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  border: 2rpx solid #8ebf30;
+  border-radius: 6rpx;
+  font-size:30rpx;
+  color:#ff3635;
+}
+.bd-list{
+padding: 30rpx 25rpx 30rpx 0;
+}
+.diffCause{
+  padding: 10rpx 0;
+}
+.diff{
+  flex: 1;
+}
+.diff-reason{
+  flex: 2;
+}
+.selectBox{
+  border: 2rpx solid #8ebf30;
+  height: 45rpx;
+  line-height: 45rpx;
+  border-radius: 6rpx;
+}
+.list-btn{
+  padding:32rpx 0;
+  border-bottom: 1rpx solid #eee;
+  height: 50rpx;
+}
+.list-btn view{
+  float:right;
+  width:150rpx;
+  height:50rpx;
+  line-height:50rpx;
+  margin-top:10rpx;
+  font-size:26rpx;
+  border-radius:10rpx;
+  text-align:center;
+}
+.clearfix{
+  clear: both;
+}

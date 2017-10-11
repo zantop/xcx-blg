@@ -1,0 +1,46 @@
+<view class="jianhuo-info">
+    <view class="info-hd list-hd">
+        <text class="list-item">拣货单号：</text>
+        <text  selectable="true" class="list-info">{{pickHeaderInfo.pickHeaderCode}}</text>
+        <text class="list-address mainColor">{{pickHeaderInfo.address}}</text>
+    </view>
+    <view class="info-bd">
+        <view class="bd-list" wx:for="{{pickTasks}}" wx:key="">
+            <view class="list-wrap">
+                <text class="list-item">商品名称：</text>
+                <text class="list-info">{{item.skuName}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">商品条码：</text>
+                <text class="list-info">{{item.barcode}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">分配数量：</text>
+                <text class="list-info">{{item.allocQty}}</text>
+            </view>
+            <view class="list-wrap">
+                <text class="list-item">实际数量：</text>
+                <text wx:if="{{statusCode=='80'}}" >{{item.pickQty}}</text>
+                <input  wx:if="{{statusCode=='50'||statusCode=='60'}}" class="beginColor" type="number"
+                        value="{{item.pickNum}}"
+                        data-id="{{item.skuId}}"
+                        bindinput="actualFill"
+                        data-allocQty="{{item.allocQty}}">
+                </input>
+                <view class="diff" wx:if="{{item.isDiff}}">
+                    <text>差异数量:</text>
+                    <text wx:if="{{statusCode=='80'}}" class="diffColor">{{item.allocQty-item.pickQty}}</text>
+                    <text wx:if="{{statusCode=='50'||statusCode=='60'}}" class="diffColor">{{item.diffNum}}</text>
+                </view>
+            </view>
+          <view class="list-btn clearfix">
+              <view wx:if="{{statusCode=='80'}}" class="mainColor">拣货完成</view>
+              <view wx:if="{{statusCode=='50'||statusCode=='60'}}" class="processBgColor" bindtap="pickOk" data-picknum="{{item.pickNum}}"data-allocQty="{{item.allocQty}}" data-skuId="{{item.skuId}}">确认拣货</view>
+          </view>
+        </view>
+    </view>
+    <view class="no-tips" wx:if="{{noTips}}">
+        <image src="https://mobile.urfresh.cn/images/nolist.png"></image>
+        <view class="no-tips-msg">该拣货单已全部完成</view>
+    </view>
+</view>
